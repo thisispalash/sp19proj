@@ -1,2 +1,7 @@
 # sp19proj
-Project files for SP19
+
+-go to zeronet's folder
+-go into data folder
+-paste this "138Hss..." folder in there and start building(I think that's how it should work)
+-if this doesn't work(screw me)..look for a solution
+
