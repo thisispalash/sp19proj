@@ -4,6 +4,7 @@ import sys
 import stat
 import time
 import logging
+import json
 
 # Third party modules
 import gevent
@@ -144,19 +145,34 @@ class Actions(object):
     def siteCreate(self):
         logging.info("Generating new privatekey...")
         from Crypt import CryptBitcoin
-        privatekey = CryptBitcoin.newPrivatekey()
-        logging.info("----------------------------------------------------------------------")
-        logging.info("Site private key: %s" % privatekey)
-        logging.info("                  !!! ^ Save it now, required to modify the site ^ !!!")
-        address = CryptBitcoin.privatekeyToAddress(privatekey)
-        logging.info("Site address:     %s" % address)
-        logging.info("----------------------------------------------------------------------")
+        
+        # TODO: MOVE
+        gen = os.path.join(os.path.join(os.path.dirname(__file__),os.pardir),'gen.json')
+        d = dict()
+        with open(gen) as f: d = json.load(f)
 
-        while True and not config.batch:
-            if raw_input("? Have you secured your private key? (yes, no) > ").lower() == "yes":
-                break
-            else:
-                logging.info("Please, secure it now, you going to need it to modify your site!")
+        # TODO add vanity support
+        privatekey = CryptBitcoin.newPrivatekey()
+        address = CryptBitcoin.privatekeyToAddress(privatekey)
+
+        d[address] = {
+            'time': time.time(),
+            'addr': address, # TODO: Add actual URL | proxy?
+            'key': privatekey
+        }
+        with open(gen,'w') as f: json.dump(d,f)
+        
+        # logging.info("----------------------------------------------------------------------")
+        # logging.info("Site private key: %s" % privatekey)
+        # logging.info("                  !!! ^ Save it now, required to modify the site ^ !!!")
+        # logging.info("Site address:     %s" % address)
+        # logging.info("----------------------------------------------------------------------")
+
+        # while True and not config.batch:
+        #     if raw_input("? Have you secured your private key? (yes, no) > ").lower() == "yes":
+        #         break
+        #     else:
+        #         logging.info("Please, secure it now, you going to need it to modify your site!")
 
         logging.info("Creating directory structure...")
         from Site import Site
@@ -164,7 +180,7 @@ class Actions(object):
         SiteManager.site_manager.load()
 
         os.mkdir("%s/%s" % (config.data_dir, address))
-        open("%s/%s/index.html" % (config.data_dir, address), "w").write("Hello %s!" % address)
+        open("%s/%s/index.html" % (config.data_dir, address), "w").write("Hello %s!" % address) # TODO: Add a basic site template
 
         logging.info("Creating content.json...")
         site = Site(address)
@@ -173,6 +189,10 @@ class Actions(object):
         site.saveSettings()
 
         logging.info("Site created!")
+        logging.info('Site address: %s' % address)
+        logging.info('Private Key: %s' % privatekey)
+        logging.info('Site dir: %s' % os.path.join(config.data_dir,address))
+
 
     def siteSign(self, address, privatekey=None, inner_path="content.json", publish=False, remove_missing_optional=False):
         from Site import Site

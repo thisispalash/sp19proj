@@ -1,1 +1,0 @@
-''' Main entry point to the app/service '''

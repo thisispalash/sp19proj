@@ -1,4 +1,8 @@
 .DS_Store
+*.pyc
+
 meta
 data
 log
+
+gen.json
