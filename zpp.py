@@ -24,7 +24,7 @@ if __name__ == '__main__':
           sys.argv.append('siteCreate')
           # TODO open site
         elif c2==2:
-          print('Coming soon!!')
+          print('Coming soon!!') #need to provide method to import from vanitygenerator.py
           continue
       elif c==3:
         addr = raw_input('Site Address: ')
