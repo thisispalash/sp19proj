@@ -4,9 +4,11 @@ import sys
 import os
 import getpass
 import json
+import VanityGenerator
+from subprocess import call
 
 if __name__ == '__main__':
-
+      
   print(__file__)
 
   if not os.path.isfile('gen.json'):
@@ -24,7 +26,8 @@ if __name__ == '__main__':
           sys.argv.append('siteCreate')
           # TODO open site
         elif c2==2:
-          print('Coming soon!!') #need to provide method to import from vanitygenerator.py
+          arg = input("Enter choice of substring(use quotes): ")
+          van_bit = call("python3 VanityGenerator.py -c " + arg, shell=True)
           continue
       elif c==3:
         addr = raw_input('Site Address: ')
@@ -60,5 +63,3 @@ if __name__ == '__main__':
     else:
       print('invalid call. Try again!')
       exit(1)
-
-  

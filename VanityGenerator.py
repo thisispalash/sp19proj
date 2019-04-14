@@ -23,7 +23,7 @@ def generate_address(contains=None, caseSensitive=False):
         if contains and contains not in addr:
             continue
 
-        print("{},{}".format(addr, KP.WIF))
+        print("Address: {},\nKeypair: {}".format(addr, KP.WIF))
         sys.exit(1)
 
 
