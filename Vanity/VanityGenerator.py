@@ -4,9 +4,9 @@
     > python3 VanityGenerator.py -c Win
 """
 
-from KeyPair import KeyPair
-import argparse
 import sys
+from .KeyPair import KeyPair
+import argparse
 
 def generate_address(contains=None, caseSensitive=False):
 
@@ -23,7 +23,7 @@ def generate_address(contains=None, caseSensitive=False):
         if contains and contains not in addr:
             continue
 
-        print("Address: {},\nKeypair: {}".format(addr, KP.WIF))
+        print("Address: {}  ,\nKeypair: {}\n".format(addr, KP.WIF))
         sys.exit(1)
 
 

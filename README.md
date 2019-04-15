@@ -11,6 +11,8 @@
 
     pip3 install mpmath
 
+    pip3 install logzero
+
 
 #### Important
     When you run `zpp.py` in vscode terminal replace `python -u 'path'` with 1python3 -u 'path'` . 

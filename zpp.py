@@ -4,7 +4,8 @@ import sys
 import os
 import getpass
 import json
-import VanityGenerator
+sys.path.append('../')
+from Vanity import VanityGenerator #problem here(can't open file 'VanityGenerator.py': [Errno 2] No such file or directory)
 from subprocess import call
 
 if __name__ == '__main__':
