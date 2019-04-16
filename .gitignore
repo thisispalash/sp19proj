@@ -6,3 +6,6 @@ data
 log
 
 gen.json
+__pycache__
+
+.vscode

@@ -4,9 +4,12 @@ import sys
 import os
 import getpass
 import json
+sys.path.append('../')
+from Vanity import VanityGenerator #problem here(can't open file 'VanityGenerator.py': [Errno 2] No such file or directory)
+from subprocess import call
 
 if __name__ == '__main__':
-
+      
   print(__file__)
 
   if not os.path.isfile('gen.json'):
@@ -24,7 +27,8 @@ if __name__ == '__main__':
           sys.argv.append('siteCreate')
           # TODO open site
         elif c2==2:
-          print('Coming soon!!')
+          arg = input("Enter choice of substring(use quotes): ")
+          van_bit = call("python3 VanityGenerator.py -c " + arg, shell=True)
           continue
       elif c==3:
         addr = raw_input('Site Address: ')
@@ -60,5 +64,3 @@ if __name__ == '__main__':
     else:
       print('invalid call. Try again!')
       exit(1)
-
-  
