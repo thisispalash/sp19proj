@@ -5,14 +5,14 @@
 """
 
 import sys
-from .KeyPair import KeyPair
+from KeyPair import KeyPair
 import argparse
 
 def generate_address(contains=None, caseSensitive=False):
 
     if not caseSensitive:
         contains = None if contains == None else contains.lower()
-
+    count = 0
     while True:
         KP = KeyPair()
         addr = KP.GetAddress().decode()
@@ -20,10 +20,13 @@ def generate_address(contains=None, caseSensitive=False):
         if not caseSensitive:
             addr = addr.lower()
         
-        if contains and contains not in addr:
+        if contains and not addr.startswith(contains):
+            # print(addr,contains)
+            count+=1
             continue
 
         print("Address: {}  ,\nKeypair: {}\n".format(addr, KP.WIF))
+        print('Addresses searched:',count)
         sys.exit(1)
 
 

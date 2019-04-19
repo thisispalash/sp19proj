@@ -1,4 +1,4 @@
-from .UIntBase import UIntBase
+from UIntBase import UIntBase
 
 class UInt160(UIntBase):
     def __init__(self, data=None):

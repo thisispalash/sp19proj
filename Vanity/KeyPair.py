@@ -10,8 +10,8 @@ import bitcoin
 import base58
 import hashlib # comes with standard python implementation
 import binascii # comes with standard python implementation
-from .ECCurve import ECDSA
-from .UInt160 import UInt160 # useful representation used in bitcoin / NEO
+from ECCurve import ECDSA
+from UInt160 import UInt160 # useful representation used in bitcoin / NEO
 
 
 def random_bytes(nBytes):

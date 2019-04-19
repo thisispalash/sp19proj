@@ -4,9 +4,32 @@ import sys
 import os
 import getpass
 import json
-sys.path.append('../')
-from Vanity import VanityGenerator #problem here(can't open file 'VanityGenerator.py': [Errno 2] No such file or directory)
-from subprocess import call
+
+from Vanity import VanityGenerator
+
+def be_vain(inp=''):
+  # TODO: Ritwik
+  pass
+
+def gen_addr():
+  pass
+
+def sign_site():
+  # Should already be in .src/
+  pass
+
+def deploy():
+  pass
+
+def extract_files():
+  # Unizip uploaded
+  # check compatibility
+  pass
+
+def browse():
+  # allows user to browse the zeronet on /browse
+  # essentially starts zeronet locally
+  pass
 
 if __name__ == '__main__':
       
@@ -28,7 +51,7 @@ if __name__ == '__main__':
           # TODO open site
         elif c2==2:
           arg = input("Enter choice of substring(use quotes): ")
-          van_bit = call("python3 VanityGenerator.py -c " + arg, shell=True)
+          van_bit = call("python3 Vanity/VanityGenerator.py -c " + arg, shell=True)
           continue
       elif c==3:
         addr = raw_input('Site Address: ')

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from form import register#login
+# from form import register#login
 app = Flask(__name__)
 
 app.config['SECRETE_KEY']= '4fa371198aeace66523b19ddc73fc6e7'
@@ -18,10 +18,10 @@ def about():
 def auth():
     return "<h1>Login & Management</h1>"
 
-@app.route('/register')
-def register():
-    form=register()
-    return render_template('register.html',title= 'Register',form=form')
+# @app.route('/register')
+# def register():
+#     form=register()
+#     return render_template('register.html',title= 'Register',form='form')
 
 # @app.route('/login')
 # def login():
