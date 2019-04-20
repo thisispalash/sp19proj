@@ -7,7 +7,7 @@ app.config['SECRETE_KEY']= '4fa371198aeace66523b19ddc73fc6e7'
 @app.route('/')
 @app.route('/home')
 def home():
-    return "<h1>Home Page! (Blog)</h1>"
+    return render_template('home.html')
 
 @app.route('/about')
 def about():
@@ -31,7 +31,7 @@ def auth():
 @app.route('/browse')
 def browse():
     return render_template('navbar.html')
-
+    
 if (__name__ == "__main__"):
     app.run(debug=True)
     
