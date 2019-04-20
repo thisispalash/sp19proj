@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Zero-Plus-Plus</title>
+    <link rel="stylesheet" href="static/css/home.css" />
+		<link rel="icon" href="static/favicon.png" />
+  </head>
+  <body>
+    {% include "nav.html" %}
+    {% if blog %}
+      {% include "blog.html" %}    
+    {% else %}
+      {% include "about.html" %}
+    {% endif %} 
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/js/home.js"></script>
+  </body>
+</html>

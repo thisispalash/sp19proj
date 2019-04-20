@@ -9,3 +9,5 @@ gen.json
 __pycache__
 
 .vscode
+
+app.env
