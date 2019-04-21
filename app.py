@@ -1,10 +1,14 @@
 import os
+from flask import Flask, render_template, request, flash, url_for, redirect
+from form import register_form#login_form
 
-from flask import Flask, render_template, request
-# from form import register#login
-app = Flask(__name__)
+from helper import app
 
 app.config['SECRET_KEY']= os.environ['FLASK_SECRET']
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+
+from model import User,Zite
+
 
 @app.route('/')
 @app.route('/home')
@@ -26,10 +30,14 @@ def login():
     elif method == 'POST':
         return render_template('index.html')
 
-@app.route('/register')
+@app.route('/register',methods=['GET','POST'])
 def register():
-    form=register()
-    return render_template('register.html',title= 'Register',form='form')
+    form=register_form()
+    if form.validate_on_submit():
+        #hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        flash(f'Account created for {form.username.data}!','success')
+        return redirect(url_for('login'))
+    return render_template('register.html',title= 'Register',form=form)
 
 @app.route('/browse')
 def browse():
