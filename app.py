@@ -16,6 +16,7 @@ def home():
 def about():
     return render_template('home.html', blog=False)
 
+@app.route('/login')
 @app.route('/auth')
 def login():
     method = request.method
@@ -43,6 +44,11 @@ def zerosite(pub):
     # TODO
     return render_template('index.html')
     
+
+@app.route('/contact')
+def contact():
+    return "Coming soon"
+
 if __name__ == '__main__':
     app.run(
         debug=True,
