@@ -5,30 +5,24 @@ import os
 import getpass
 import json
 
-from zeronet.Vanity import VanityGenerator
 
 def be_vain(inp=''):
-  # TODO: Ritwik
-  pass
+  from zeronet.Vanity import VanityGenerator
+  pub,priv,ct = VanityGenerator.generate_address(contains=inp)
+  return pub.decode(),priv.decode()
 
 def gen_addr():
-  pass
+  return be_vain()
 
 def sign_site():
-  # Should already be in .src/
   pass
 
 def deploy():
   pass
 
 def extract_files():
-  # Unizip uploaded
+  # Unizip uploaded: https://stackoverflow.com/questions/3451111/unzipping-files-in-python
   # check compatibility
-  pass
-
-def browse():
-  # allows user to browse the zeronet on /browse
-  # essentially starts zeronet locally
   pass
 
 if __name__ == '__main__':

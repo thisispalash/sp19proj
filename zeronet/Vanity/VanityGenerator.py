@@ -5,8 +5,10 @@
 """
 
 import sys
+import re
 from KeyPair import KeyPair
 import argparse
+from base58 import b58encode
 
 def generate_address(contains=None, caseSensitive=False):
 
@@ -16,18 +18,15 @@ def generate_address(contains=None, caseSensitive=False):
     while True:
         KP = KeyPair()
         addr = KP.GetAddress().decode()
-
-        if not caseSensitive:
-            addr = addr.lower()
         
-        if contains and not addr.startswith(contains):
-            # print(addr,contains)
+        if contains and not re.match(contains,addr,re.I):
             count+=1
-            continue
-
-        print("Address: {}  ,\nKeypair: {}\n".format(addr, KP.WIF))
-        print('Addresses searched:',count)
-        sys.exit(1)
+            break
+    
+    pub = addr.encode()
+    priv = b58encode(KP.PrivateKeyFromWIF(KP.WIF))
+    
+    return (pub,priv,count)
 
 
 if __name__ == '__main__':
