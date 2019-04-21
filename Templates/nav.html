@@ -3,16 +3,16 @@
 <div id="sidenav" class="sidenav">
     <a class="hamburger"></a>
     <li class="dummy"></li>
-    <!-- {% if not session %} -->
-    <a href="register"><li>Register</li></a>
-    <a href="login"><li>Login</li></a>
-    <a href="about"><li>About</li></a>
-    <!-- {% else %} -->
-    <a href="create"><li>Create New Zite</li></a>
-    <a href="update"><li>Update Zite</li></a>
-    <a href="contact"><li>Contact</li></a>
-    <a href="logout"><li>Logout</li></a>
-    <!-- {% endif %} -->
+    {% if not session['logged'] %}
+        <a href="register"><li>Register</li></a>
+        <a href="login"><li>Login</li></a>
+        <a href="about"><li>About</li></a>
+    {% else %}
+        <a href="create"><li>Create New Zite</li></a>
+        <a href="update"><li>Update Zite</li></a>
+        <a href="contact"><li>Contact</li></a>
+        <a href="logout"><li>Logout</li></a>
+    {% endif %}
 </div>
 
 <script src="static/js/nav.js"></script>

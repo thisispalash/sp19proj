@@ -1,53 +1,11 @@
-<!-- <!DOCTYPE html>
-<html>
-	<head>
-		<title>Directive by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
-		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/font-awesome.min.css') }}" />
+<link rel="stylesheet" href="static/css/form.css">
+<div class="container">
+    <form method="post">
 
-	</head>
-	<body class="is-preload">
-        <header>
-            <h3>Form</h3>
-        </header>
-            <form method="post" action="#">
-                <div class="row">
-                    <div class="col-6 col-12-mobilep">
-                        <label for="name">Name</label>
-                        <input class="text" type="text" name="name" id="name" value="" placeholder="John Doe" />
-                    </div>
-                    <div class="col-6 col-12-mobilep">
-                        <label for="email">Email</label>
-                        <input class="text" type="text" name="email" id="email" value="" placeholder="johndoe@domain.tld" />
-                    </div>
-                    <div class="col-12">
-                        <label for="subject">Subject</label>
-                        <input class="text" type="text" name="subject" id="subject" value="" placeholder="Enter your subject" />
-                    </div>
-                    <div class="col-12">
-                        <label for="subject">Message</label>
-                        <textarea name="message" id="message" placeholder="Enter your message" rows="6"></textarea>
-                    </div>
-                    <div class="col-12">
-                        <ul class="actions special">
-                            <li><input type="submit" value="Send" /></li>
-                            <li><input type="reset" value="Reset" class="alt" /></li>
-                        </ul>
-                    </div>
-                </div>
-            </form>
-    </body>
-</html> -->
+    </form>
+</div>
 
-<head>
-            
-    <meta charset="utf-8" />
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main2.css') }}" />
-
-</head>
 
 
 <div class="content-section">
@@ -55,6 +13,7 @@
         {{ form.hidden_tag()}}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Join Today!</legend>
+
             <div class="form-group">
                 {{ form.username.label(class="form-control-label") }}
 
@@ -69,33 +28,21 @@
                     {{ form.username(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
-        
             <div class="form-group">
-                {{ form.password.label(class="form-control-label") }}
-                {% if form.password.errors %}
-                    {{ form.password(class="form-control form-control-lg is-invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.password.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.password(class="form-control form-control-lg") }}
-                {% endif %}
-            </div>
-            <div class="form-group">
-                {{ form.confirm_password.label(class="form-control-label") }}
-                {% if form.confirm_password.errors %}
-                    {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
-                    <div class="invalid-feedback">
-                        {% for error in form.confirm_password.errors %}
-                            <span>{{ error }}</span>
-                        {% endfor %}
-                    </div>
-                {% else %}
-                    {{ form.confirm_password(class="form-control form-control-lg") }}
-                {% endif %}
-            </div>
+                    {{ form.name.label(class="form-control-label") }}
+    
+                    {% if form.name.errors %}
+                        {{ form.name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            
         </fieldset>
         <div class="form-group">
             {{ form.submit(class="btn btn-outline-info") }}

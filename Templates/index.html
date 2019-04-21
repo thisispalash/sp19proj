@@ -11,3 +11,17 @@ Display logged in page
   Display site information -->
 
 {% include "nav.html" %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Zero-Plus-Plus</title>
+    <link rel="stylesheet" href="static/css/index.css" />
+    <link rel="icon" href="static/favicon.png" />
+  </head>
+  <body>
+    {% if render %}
+      {% include render %}
+    {% endif %}
+  </body>
+</html>
