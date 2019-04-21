@@ -1,6 +1,7 @@
 $('a[data-o').click(function(e) {
   e.preventDefault()
-  $(this).contents().unwrap();
+
+  if (!$(this).attr('data-r')) { $(this).contents().unwrap(); }
 
   let ob = $(this).attr('data-o');
   if (ob)
@@ -18,3 +19,11 @@ function count_clicks(o,c) {
   console.log('Opened: ' + o);
   console.log('Closed: ' + c);
 }
+
+function link_setup() {
+  $('a').attr('target','_blank');
+}
+
+$(document).ready(function() {
+  link_setup();
+})

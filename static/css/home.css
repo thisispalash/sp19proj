@@ -14,8 +14,9 @@
 }
 
 html {
-  font-size: 18px; 
+  font-size: 16px;
   font-family: 'Nunito-R', 'Nunito', sans-serif;
+  text-align: justify;
 }
 
 b {
@@ -26,7 +27,6 @@ body {
   margin: 0 auto;
   color: #111;
   background-color: #F9F9F9;
-  transition: all 1000ms cubic-bezier(0.76, 0, 1, 1);
 }
 
 .container {
@@ -39,11 +39,11 @@ p {
   font-size: 1.3rem;
   line-height: 2.2rem;
   text-indent: 2.2rem;
-  margin: 0; 
+  margin: 0;
+  padding-top: 1rem;
 }
 
 a {
-  text-decoration: none;
   color: #111;
   padding-bottom: 2px;
   text-decoration: underline double;
@@ -51,6 +51,20 @@ a {
   color: #4472C4;
   cursor: pointer;
   text-decoration: underline dashed;
+}
+
+a.external {
+  color: #111;
+  text-decoration: none;
+} a.external:hover {
+  color: #4472C4;
+}
+
+a.internal {
+  color: #4472C4;
+  text-decoration: none;
+} a.internal:hover {
+  color: #111;
 }
 
 span { display: none; }
