@@ -57,6 +57,10 @@ def zerosite(pub):
 def contact():
     return "Coming soon"
 
+@app.route('/logout')
+def logout():
+    return "Lol you can never"
+
 if __name__ == '__main__':
     app.run(
         debug=True,
