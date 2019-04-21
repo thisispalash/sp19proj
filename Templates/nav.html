@@ -1,20 +1,130 @@
 <style>
-.nav {
-  right: 0; top: 0;
-  margin: 5vh 5vw;
-  max-width: 300px;
-  text-align: right;
+html, body, #main {
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f1f0f1;
+  font-family: 'Roboto', sans-serif;
+  color: #444344;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.sidenav {
   position: fixed;
-  word-wrap: overflow;
+  width: 80vw;
+  max-width: 300px;
+  height: 100vh;
+  padding-top: 40px;
+  color: white;
+  background-color: #444344;
+  transition: transform 0.5s ease-in-out;
+  transform: translateX(-100%);
+}
+
+.sidenav.open {
+  transform: translateX(0);
+}
+
+.sidenav a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidenav li {
+  padding: 20px;
+  margin-bottom: 1px;
+  list-style: none;
+}
+
+.sidenav li:hover {
+  background-color: #222;
+}
+
+.sidenav li.active {
+  background-color: #393839;
+}
+
+.sidenav .hamburger, .sidenav .hamburger:after, .sidenav .hamburger:before {
+  content: "";
+  height: 4px;
+  width: 25px;
+  background-color: #444344;
+  display: block;
+  clear: both;
+  position: absolute;
+  border-radius: 3px;
+  top: 9px;
+  right: -35px;
+  transition: all 0.3s ease-in-out 0.3s;
+}
+
+.sidenav .hamburger:before {
+  position: relative;
+  top: 14px;
+  right: 0;
+}
+
+.sidenav .hamburger:after {
+  position: relative;
+  top: 3px;
+  right: 0;
+}
+
+.sidenav.open .hamburger, .sidenav.open .hamburger:after, .sidenav.open .hamburger:before {
+  background-color: white;
+  right: 10px;
+}
+
+.sidenav.open .hamburger {
+  transform: translateY(6px) rotate(-45deg);
+}
+
+.sidenav.open .hamburger:before {
+  right: 0;
+  transform: translateY(-14px) rotate(90deg);
+}
+
+.sidenav.open .hamburger:after {
+  right: 0;
+  transform: translateY(-7px) rotate(45deg) scale(0) ;
 }
 </style>
 
-<div class="nav">
-  <!-- Error: Not showing the font awesome icon   -->
-  <i class="fas fa-bars"></i>
-
+<div id="sidenav" class="sidenav">
+    <a href="#" class="hamburger"></a>
+    <a href=""><li class="active">pee1</li></a>
+    <a href=""><li>pee2</li></a>
 </div>
 
 <script>
+var sidenav = new Sidenav("sidenav");
+document.getElementById("sidenav").addEventListener("click", function () {
+sidenav.openClose();
+})
 
+function Sidenav(ob) {
+var navId = (ob !== null && typeof ob === 'object') ? ob.id : ob;
+var opt = ob || {};
+
+this.isOpen = opt.isOpen || false;
+this.sidenav = document.getElementById(navId);
+}
+
+// True is open, false is close and no option is toggle
+Sidenav.prototype.openClose = function (open) {
+var self = this;
+
+self.isOpen = open || !self.isOpen;
+if (self.isOpen) {
+    self.sidenav.classList.add("open");
+} else {
+    self.sidenav.classList.remove("open");
+}
+}
 </script>
