@@ -1,1 +1,63 @@
-<!--TODO-->
+<link rel="stylesheet" href="static/css/form.css">
+
+<div class="container">
+    <form method="POST" action="">
+        {{ form.csrf_token()}}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4"><b>Enter for goodness</b></legend>
+            
+            <div class="form-group">
+                {{ form.username.label(class="form-control-label") }}
+
+                {% if form.username.errors %}
+                    {{ form.username(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.username(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.pub.label(class="form-control-label") }}
+
+                {% if form.pub.errors %}
+                    {{ form.pub(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.pub.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.pub(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                {{ form.priv.label(class="form-control-label") }}
+                {% if form.priv.errors %}
+                    {{ form.priv(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.priv.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.priv(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+
+        </fieldset>
+
+    </form>
+</div>
+
+<script>
+</script>

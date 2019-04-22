@@ -1,18 +1,10 @@
 <link rel="stylesheet" href="static/css/form.css">
+
 <div class="container">
-    <form method="post">
-
-    </form>
-</div>
-
-
-
-
-<div class="content-section">
     <form method="POST" action="">
-        {{ form.hidden_tag()}}
+        {{ form.csrf_token()}}
         <fieldset class="form-group">
-            <legend class="border-bottom mb-4">Join Today!</legend>
+            <legend class="border-bottom mb-4">Start using the zeronet today!</legend>
             <div class="form-group">
                 {{ form.name.label(class="form-control-label") }}
 
@@ -43,15 +35,29 @@
                 {% endif %}
             </div>
             
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+
+            {{ form.pub(value=pub) }}
+            {{ form.priv(value=priv) }}
         </fieldset>
-        <div class="form-group">
-            {{ form.submit(class="btn btn-outline-info") }}
-        </div>
 
     </form>
+    <div class="container">
+        <p class="left">Your unique public key:<br>{{ pub }}</p>
+        <p class="right">
+            Your associated private key:<br>
+            <span onclick="copy('{{priv}}')" class="copy-to-clipboard" title="Copy to clipboard">{{ priv }}</span>
+        </p>
+        <p class="center important">
+            Save your private key above as it will be used to login to the portal!
+        </p>
+    </div>
 </div>
-<div class="border-top pt-3">
-    <small class="text-muted">
-        Already Have An Account? <a class="ml-2" href="{{ url_for('login') }}">Sign In</a> 
-    </small>
-</div>
+
+<script>
+function copy(key) {
+    navigator.clipboard.writeText(key);
+}
+</script>

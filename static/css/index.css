@@ -1,3 +1,56 @@
 @import url('fonts/google-fonts.css');
 @import url('fonts/font-awesome.min.css');
 
+::-moz-selection {
+  color: #F9F9F9;
+  background: #4472C4;
+  text-decoration: none;
+}
+
+::selection {
+  color: #F9F9F9;
+  background: #4472C4; 
+  text-decoration: none;
+}
+
+html {
+  font-size: 16px;
+  font-family: 'Nunito-R', 'Nunito', sans-serif;
+  text-align: justify;
+}
+
+b {
+  font-family: 'Nunito-B';
+}
+
+body {
+  margin: 0 auto;
+  color: #111;
+  background-color: #F9F9F9;
+}
+
+.container {
+  max-width: 700px;
+  margin: 15vh auto;
+  padding: 0 20px; 
+}
+
+.left { text-align: left; }
+.right { text-align: right; }
+.center { text-align: center; }
+
+@keyframes imp {
+  from {
+    background-color: #F9F9F9;
+    color: #4472C4;
+  } to {
+    background-color: #4472C4;
+    color: #F9F9F9;
+  }
+}
+
+.important {
+  animation: imp 5s infinite alternate;
+  border-radius: 10px;
+  padding: 1%;
+}

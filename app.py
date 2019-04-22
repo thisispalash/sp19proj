@@ -1,13 +1,22 @@
 import os
+import subprocess
+
 from flask import Flask, render_template, request, flash, url_for, redirect, session, abort
 from form import register_form#login_form
 
 from helper import app
 
-app.config['SECRET_KEY']= os.environ['FLASK_SECRET']
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+zeronet = 'python2 zeronet/zeronet.py'
+process = subprocess.Popen(zeronet.split(),stdout=subprocess.PIPE)
+out,err = process.communicate()
 
 from model import User,Zite
+
+# Sorry
+users = {}
+user_count = 1
+# Not sorry
+
 
 @app.route('/')
 @app.route('/home')
@@ -19,37 +28,60 @@ def home():
 def about():
     return render_template('home.html', blog=False, session=session)
 
-@app.route('/login')
-@app.route('/auth')
+@app.route('/login', methods=['GET','POST'])
+@app.route('/auth', methods=['GET','POST'])
 def login():
+    from form import login_form
+    form = login_form()
     method = request.method
-    if method == 'GET':
-        return render_template('index.html')
-    
-    elif method == 'POST':
-        return render_template('index.html')
-
-@app.route('/register')
-def register():
     if request.method == 'GET':
+        return render_template(
+        'index.html',
+        render='login.html',
+        form=form
+        )
+    # TODO Check and redirect post
+    # global users
+    # print(users)
+    # print(form.data)
+    # for id,user in users.items():
+    #     if user['username'] == form.data['username']:
+    #         if user['priv'] == form.data['priv']:
+    #             return 'welcome '+user['name']
+    # return 'invalid login'
+
+@app.route('/register', methods=['GET','POST'])
+def register():
+    from form import register_form
+    form = register_form()
+    if request.method == 'GET':
+        pub,priv = get_new_keypair()
         return render_template(
             'index.html',
             render='register.html',
-            form=register_form(),
-            session=session
+            form=form,
+            session=session,
+            pub=pub, priv=priv
             )
-    
-    if form.validate_on_submit():
-        #hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        flash(f'Account created for {form.username.data}!','success')
-        return redirect(url_for('login'))
-    return render_template('register.html',title='Register',form=form)
+    # TODO: Check and save to db
+    # global users, user_count
+    # print(users)
+    # users[user_count] = {
+    #     'name': form.data['name'],
+    #     'username': form.data['username'],
+    #     'pub': form.data['pub'],
+    #     'priv': form.data['priv']
+    # }
+    # user_count+=1
+    # print(users)
+    # return redirect('login')
 
 @app.route('/browse')
 def browse():
-    return render_template('browse.html', 
-        redirect_uri='http://127.0.0.1:43110'
-        )
+    cmd = 'python2 zeronet/zeronet.py --silent'
+    process = subprocess.Popen(cmd.split(),stdout=subprocess.PIPE)
+    out,err = process.communicate()
+    return render_template('browse.html', redirect_uri='http://127.0.0.1:43110')
 
 @app.route('/create')
 @app.route('/update')
@@ -68,6 +100,16 @@ def contact():
 def logout():
     session.clear()
     return redirect('/auth')
+
+
+''' Helpers '''
+def get_new_keypair():
+    cmd = 'python2 zeronet/PubPriv.py new'
+    process = subprocess.Popen(cmd.split(),stdout=subprocess.PIPE)
+    out,err = process.communicate()
+    out = out.decode()
+    pair = out.split('\n') #TODO Add error checking
+    return pair[0],pair[1]
 
 if __name__ == '__main__':
     app.run(
