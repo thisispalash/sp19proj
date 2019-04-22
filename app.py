@@ -3,6 +3,9 @@ from flask import Flask, render_template, request, flash, url_for, redirect, ses
 from form import register_form#login_form
 
 from helper import app
+from subprocess import call
+from zeronet import zeronet
+call("python2 zeronet.py",shell=False)#problem here(File "/home/retro/Documents/sp19proj/zeronet/zeronet.py", line 33  except Exception, err:   SyntaxError: invalid syntax)
 
 app.config['SECRET_KEY']= os.environ['FLASK_SECRET']
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
@@ -42,7 +45,7 @@ def register():
     if form.validate_on_submit():
         #hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         flash(f'Account created for {form.username.data}!','success')
-        return redirect(url_for('login'))
+            return redirect(url_for('login'))
     return render_template('register.html',title='Register',form=form)
 
 @app.route('/browse')

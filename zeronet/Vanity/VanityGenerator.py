@@ -6,7 +6,7 @@
 
 import sys
 import re
-from KeyPair import KeyPair
+from .KeyPair import KeyPair
 import argparse
 from base58 import b58encode
 
