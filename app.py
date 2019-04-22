@@ -47,8 +47,9 @@ def register():
 
 @app.route('/browse')
 def browse():
-    # TODO: Browse the zeronet
-    return render_template('browse.html')
+    return render_template('browse.html', 
+        redirect_uri='http://127.0.0.1:43110'
+        )
 
 @app.route('/create')
 @app.route('/update')
@@ -65,7 +66,8 @@ def contact():
 
 @app.route('/logout')
 def logout():
-    return "Lol you can never"
+    session.clear()
+    return redirect('/auth')
 
 if __name__ == '__main__':
     app.run(
